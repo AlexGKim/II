@@ -1,0 +1,10 @@
+Indeed I have been thinking about intensity interferometry for calibrating type Ia supernova distances.  Specifically I found that with a.km-scale baseline one could measure the angular size of a supernova photosphere as it expands.   Size + spectra + modeling of the expanding photosphere gives luminosity using an extended version of the Baade-Wesselink method.  The methodology has been used for type II supernovae as they are close to blackbody (less model dependent), but the technique is extensible to SNe Ia (more model dependent).  I put the idea on the back burner as I had thought that we were a generation away from the detector technology to do so, but Jeff tells me I was wrong about that.
+
+Type Ia SNe have absolute magnitude ~ -19.1.  For 12 magnitude limit this corresponds to z=1200 km/s.  The expected rate of SNe within this volume is 0.5/yr total over the 4pi, not unreasonably low.  A novel geometric determination of the Hubble constant would be an excellent science case for an intensity interferometric telescope.
+
+Type II SNe are cleaner to model but a significantly fainter.  10x more SNe.
+
+z=1200 km/s
+d = 6 km to resolve
+
+What is "hot temperature" requirement
