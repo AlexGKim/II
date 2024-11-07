@@ -4,6 +4,7 @@ import astropy.cosmology
 import matplotlib.pyplot as plt
 import matplotlib
 import scipy.integrate as integrate
+from scipy.fft import fft2, rfft2, fftshift
 matplotlib.use("TkAgg")
 
 cosmo = astropy.cosmology.FlatLambdaCDM(H0=70, Om0=0.3)
@@ -77,7 +78,7 @@ def snRate():
 	plt.savefig('rates.pdf')
 	# plt.show()
 
-snRate()
+# snRate()
 
 def angularSize():
 
@@ -112,4 +113,71 @@ def angularSize():
 	plt.savefig('angle.pdf')
 	# plt.show()
 
-angularSize()
+# angularSize()
+
+
+def gamma():
+	def Pz(p):
+		return 0.5
+		return 2*numpy.arctan(0.3*p)**2
+
+
+	def intensity(t1, t2, disk=False):
+		rho = numpy.sqrt(t1**2+t2**2)
+		if (rho>1):
+			return 0
+		else:
+			if disk:
+				return 1
+			theta = numpy.arctan2(t1,t2)
+			return numpy.sqrt(0.5*(1- Pz(rho))**2 + Pz(rho)**2 * numpy.cos(theta)**2)
+
+	nbin=1001
+	u = numpy.linspace(-10.,10.,nbin)
+	v = u
+
+	I = numpy.zeros((nbin,nbin))
+	for i,_u in enumerate(u):
+		for j,_v in enumerate(v):
+			I[i,j] = intensity(_u,_v)
+
+	totalI = I.sum()
+	# plt.plot(u,Pz(u))
+	# plt.xlabel('p')
+	# plt.ylabel('Pz')
+	# plt.savefig('Pz.pdf')
+	# plt.clf()
+
+
+	# plt.imshow(I)
+	# plt.savefig('intensity.pdf')
+	# plt.clf()
+	gamma = fft2(I)
+	gamma2 = numpy.abs(gamma)**2
+	# print(gamma2)
+
+	I = numpy.zeros((nbin,nbin))
+	for i,_u in enumerate(u):
+		for j,_v in enumerate(v):
+			I[i,j] = intensity(_u,_v,disk=True)
+
+	I = I/I.sum()*totalI
+
+	dum = fft2(I)
+	dum2 = numpy.abs(dum)**2
+
+	nrange = 50
+
+	plt.plot(fftshift(gamma2)[(nrange//2-1)*nbin//nrange:(nrange//2+1)*nbin//nrange,nbin//2],label='u',color='blue'); 
+	plt.plot(fftshift(gamma2)[nbin//2,(nrange//2-1)*nbin//nrange:(nrange//2+1)*nbin//nrange],label='y',color='brown'); 
+	plt.plot(fftshift(dum2)[nbin//2,(nrange//2-1)*nbin//nrange:(nrange//2+1)*nbin//nrange],label='Airy',color='red'); 
+	plt.legend()
+	plt.savefig('gamma.pdf')
+	plt.clf()
+
+	# plt.imshow(fftshift(gamma2)[(nrange//2-1)*nbin//nrange:(nrange//2+1)*nbin//nrange,(nrange//2-1)*nbin//nrange:(nrange//2+1)*nbin//nrange])
+	# plt.savefig('gamma_im.pdf')
+	# plt.clf()
+
+
+gamma()
