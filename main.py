@@ -118,10 +118,19 @@ def angularSize():
 
 def gamma():
 	def Pz(p):
-		return 0.5
-		return 2*numpy.arctan(0.3*p)**2
+		rmax = 2.25
+		y2 = rmax**2 - p**2
+		cos2  = y2/rmax**2
+		return (1-cos2)/(1+cos2)
 
 
+	u = numpy.linspace(-1.5,1.5,101)
+	# plt.plot(u,Pz(u))
+	# plt.xlabel('p')
+	# plt.ylabel('Pz')
+	# plt.savefig('Pz.pdf')
+	# plt.clf()
+	# wfe
 	def intensity(t1, t2, disk=False):
 		rho = numpy.sqrt(t1**2+t2**2)
 		if (rho>1):
@@ -130,7 +139,7 @@ def gamma():
 			if disk:
 				return 1
 			theta = numpy.arctan2(t1,t2)
-			return numpy.sqrt(0.5*(1- Pz(rho))**2 + Pz(rho)**2 * numpy.cos(theta)**2)
+			return 0.5*(1- Pz(rho)) + Pz(rho) * numpy.cos(theta)**2
 
 	nbin=1001
 	u = numpy.linspace(-10.,10.,nbin)
@@ -142,16 +151,17 @@ def gamma():
 			I[i,j] = intensity(_u,_v)
 
 	totalI = I.sum()
-	# plt.plot(u,Pz(u))
-	# plt.xlabel('p')
-	# plt.ylabel('Pz')
-	# plt.savefig('Pz.pdf')
-	# plt.clf()
 
+	# plt.plot(I[nbin//2,450:550])
+	# plt.plot(I[450:550,nbin//2])
+	# plt.show()
+	# wef
 
-	# plt.imshow(I)
-	# plt.savefig('intensity.pdf')
-	# plt.clf()
+	nrange = 16
+	plt.imshow(I[(nrange//2-1)*nbin//nrange:(nrange//2+1)*nbin//nrange,(nrange//2-1)*nbin//nrange:(nrange//2+1)*nbin//nrange])
+	plt.savefig('intensity.pdf')
+	plt.clf()
+
 	gamma = fft2(I)
 	gamma2 = numpy.abs(gamma)**2
 	# print(gamma2)
@@ -166,8 +176,7 @@ def gamma():
 	dum = fft2(I)
 	dum2 = numpy.abs(dum)**2
 
-	nrange = 50
-
+	nrange = 40
 	plt.plot(fftshift(gamma2)[(nrange//2-1)*nbin//nrange:(nrange//2+1)*nbin//nrange,nbin//2],label='u',color='blue'); 
 	plt.plot(fftshift(gamma2)[nbin//2,(nrange//2-1)*nbin//nrange:(nrange//2+1)*nbin//nrange],label='y',color='brown'); 
 	plt.plot(fftshift(dum2)[nbin//2,(nrange//2-1)*nbin//nrange:(nrange//2+1)*nbin//nrange],label='Airy',color='red'); 
