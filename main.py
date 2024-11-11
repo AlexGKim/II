@@ -33,7 +33,7 @@ r_Ic = r_cc * 0.075
 r_Ib = r_cc * 0.108
 
 M_snIa = (-19.46 + 5 * numpy.log10(70/60))
-# M_cc = (-18 + 5 * numpy.log10(70/60)) 
+# M_II= (-18 + 5 * numpy.log10(70/60)) 
 M_II =  -15.97
 M_IIL =  -18.28
 M_IIP =  -16.67
@@ -57,7 +57,7 @@ r=[r_snIa,r_II, r_IIL, r_IIP, r_IIb, r_IIn, r_Ic, r_Ib]
 M=[M_snIa,M_II, M_IIL, M_IIP, M_IIb, M_IIn, M_Ic, M_Ib]
 v=numpy.array([v_snIa, v_cc, v_cc, v_cc, v_cc, v_cc, v_cc, v_cc])
 t=numpy.array([t_snIa, t_cc, t_cc, t_cc, t_cc, t_cc, t_cc, t_cc])
-type_str = ["Ia","II", "II", "IIP", "IIb", "IIn", "Ic", "Ib"]
+type_str = ["Ia","II", "IIL", "IIP", "IIb", "IIn", "Ic", "Ib"]
 
 def dNdm(m, M, r):
 	z = astropy.cosmology.z_at_value(cosmo.distmod, (m-M)*u.mag,0.000001,0.5)
@@ -74,7 +74,7 @@ def snRate():
 		_zs=[]
 		for l in limmag:
 			_rates.append( integrate.quad(dNdm, 0, l, args=(_M,_r))[0])
-			_zs.append(astropy.cosmology.z_at_value(cosmo.distmod, (l-_M)*u.mag,0.000001,0.5).value)
+			_zs.append(astropy.cosmology.z_at_value(cosmo.distmod, (l-_M)*u.mag,0.0000001,0.5).value)
 		rates.append(_rates)
 		zs.append(_zs)
 
@@ -102,8 +102,8 @@ def snRate():
 	plt.savefig('rates.pdf')
 	# plt.show()
 
-# snRate()
-# wfe
+snRate()
+wfe
 def angularSize():
 
 	zs = numpy.linspace(0.0001,0.004,40)
