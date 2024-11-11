@@ -102,8 +102,8 @@ def snRate():
 	plt.savefig('rates.pdf')
 	# plt.show()
 
-snRate()
-wfe
+# snRate()
+# wfe
 def angularSize():
 
 	zs = numpy.linspace(0.0001,0.004,40)
@@ -137,8 +137,8 @@ def angularSize():
 	plt.savefig('angle.pdf')
 	# plt.show()
 
-angularSize()
-wef
+# angularSize()
+# wef
 
 def gamma():
 	def Pz(p):
@@ -174,7 +174,7 @@ def gamma():
 		for j,_v in enumerate(v):
 			I[i,j] = intensity(_u,_v)
 
-	totalI = I.sum()
+	I=I/I.sum()
 
 	# plt.plot(I[nbin//2,450:550])
 	# plt.plot(I[450:550,nbin//2])
@@ -195,15 +195,20 @@ def gamma():
 		for j,_v in enumerate(v):
 			I[i,j] = intensity(_u,_v,disk=True)
 
-	I = I/I.sum()*totalI
+	I = I/I.sum()
 
 	dum = fft2(I)
 	dum2 = numpy.abs(dum)**2
 
 	nrange = 40
-	plt.plot(fftshift(gamma2)[(nrange//2-1)*nbin//nrange:(nrange//2+1)*nbin//nrange,nbin//2],label='u',color='blue'); 
-	plt.plot(fftshift(gamma2)[nbin//2,(nrange//2-1)*nbin//nrange:(nrange//2+1)*nbin//nrange],label='y',color='brown'); 
-	plt.plot(fftshift(dum2)[nbin//2,(nrange//2-1)*nbin//nrange:(nrange//2+1)*nbin//nrange],label='Airy',color='red'); 
+	# plt.plot(fftshift(gamma2)[(nrange//2-1)*nbin//nrange:(nrange//2+1)*nbin//nrange,nbin//2],label='u',color='blue'); 
+	# plt.plot(fftshift(gamma2)[nbin//2,(nrange//2-1)*nbin//nrange:(nrange//2+1)*nbin//nrange],label='y',color='brown'); 
+	# plt.plot(fftshift(dum2)[nbin//2,(nrange//2-1)*nbin//nrange:(nrange//2+1)*nbin//nrange],label='Airy',color='red'); 
+	plt.plot(numpy.arange(20)/3.14,gamma2[:20,0],label='u',color='blue'); 
+	plt.plot(numpy.arange(20)/3.14,gamma2[0,:20],label='y',color='brown'); 
+	plt.plot(numpy.arange(20)/3.14,dum2[0,:20],label='Airy',color='red'); 
+	plt.xlabel(r"$\zeta$")
+	plt.ylabel(r"$\gamma^2$")
 	plt.legend()
 	plt.savefig('gamma.pdf')
 	plt.clf()
