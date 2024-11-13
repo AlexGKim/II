@@ -10,9 +10,15 @@ matplotlib.use("TkAgg")
 
 cosmo = astropy.cosmology.FlatLambdaCDM(H0=70, Om0=0.3)
 
-tmax=18 # days
+tmax=20 # days
 vmax=1e4 # km/s
+
+tmax_Ibc = 17
+tmax_II =7.5
+
 r = vmax * tmax * 3600 * 24
+r_Ibc = vmax * tmax_Ibc * 3600 * 24
+r_II = vmax * tmax_II * 3600 * 24
 
 z=1200 # km/s
 d_z = z/ 70 # Mpc
@@ -69,14 +75,17 @@ def snRate():
 	limmag = numpy.linspace(8,12,40)
 	rates = []
 	zs = []
+	index=True
 	for _r, _M in zip(r, M):
-		_rates=[]
-		_zs=[]
-		for l in limmag:
-			_rates.append( integrate.quad(dNdm, 0, l, args=(_M,_r))[0])
-			_zs.append(astropy.cosmology.z_at_value(cosmo.distmod, (l-_M)*u.mag,0.0000001,0.5).value)
-		rates.append(_rates)
-		zs.append(_zs)
+		if index:
+			_rates=[]
+			_zs=[]
+			for l in limmag:
+				_rates.append( integrate.quad(dNdm, 0, l, args=(_M,_r))[0])
+				_zs.append(astropy.cosmology.z_at_value(cosmo.distmod, (l-_M)*u.mag,0.0000001,0.5).value)
+			rates.append(_rates)
+			zs.append(_zs)
+			index = False
 
 	fig, ax1 = plt.subplots(constrained_layout = True)
 	color = 'tab:red'
@@ -97,7 +106,7 @@ def snRate():
 	ax2.tick_params(axis='y') #, labelcolor=color)
 
 	# fig.tight_layouts()  # otherwise the right y-label is slightly clipped
-	ax2.legend(loc=2)
+	# ax2.legend(loc=2)
 	fig.tight_layout() 
 	plt.savefig('rates.pdf')
 	# plt.show()
@@ -117,10 +126,10 @@ def angularSize():
 	fig, ax1 = plt.subplots(constrained_layout = True)
 	color = 'tab:red'
 	ax1.set_xlabel(r'$z$')
-	ax1.set_ylabel(r'$\theta$ [nrad] [dashed]') #, color=color)
+	ax1.set_ylabel(r'$\theta$ [nrad] [dotted]') #, color=color)
 	ax1.tick_params(axis='y') #, labelcolor=color)
-	ax1.plot(zs, theta[0]*1e9) #, ls='-.', label=r'SN Ia [$\theta$]')
-	ax1.plot(zs, theta[1]*1e9) #, ls='-.', label=r'CC [$\theta$]')
+	ax1.plot(zs, theta[0]*1e9,ls='dotted') #, ls='-.', label=r'SN Ia [$\theta$]')
+	# ax1.plot(zs, theta[1]*1e9) #, ls='-.', label=r'CC [$\theta$]')
 	# plt.plot(limmag, zs[1], ls='-.', label=r'CCSN [$z_\text{max}$]')
 	ax2 = ax1.twinx()  # instantiate a second Axes that shares the same x-axis
 
@@ -129,16 +138,16 @@ def angularSize():
 	# ax2.plot(zs, 176*(550/700)/(theta[0]*1e6), label=r'SN Ia [$r$]')
 	# ax2.plot(zs, 176*(550/700)/(theta[1]*1e6), label=r'CCSN [$r$]')
 	ax2.plot(zs, 1.22*440e-9/(theta[0])*1e-3, label=r'SN Ia')
-	ax2.plot(zs, 1.22*440e-9/(theta[1])*1e-3, label=r'CCSN')
+	# ax2.plot(zs, 1.22*440e-9/(theta[1])*1e-3, label=r'CCSN')
 	ax2.tick_params(axis='y') # , labelcolor=color)
 
 	# fig.tight_layouts()  # otherwise the right y-label is slightly clipped
-	ax2.legend(loc=2)
+	# ax2.legend(loc=2)
 	plt.savefig('angle.pdf')
 	# plt.show()
 
-# angularSize()
-# wef
+angularSize()
+wef
 
 def gamma():
 	def Pz(p):
