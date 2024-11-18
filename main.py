@@ -109,10 +109,9 @@ def snRate():
 	# ax2.legend(loc=2)
 	fig.tight_layout() 
 	plt.savefig('rates.pdf')
+	plt.clf()
 	# plt.show()
 
-# snRate()
-# wfe
 def angularSize():
 
 	zs = numpy.linspace(0.0001,0.004,40)
@@ -144,10 +143,8 @@ def angularSize():
 	# fig.tight_layouts()  # otherwise the right y-label is slightly clipped
 	# ax2.legend(loc=2)
 	plt.savefig('angle.pdf')
+	plt.clf()
 	# plt.show()
-
-angularSize()
-wef
 
 def gamma():
 	def Pz(p):
@@ -227,4 +224,18 @@ def gamma():
 	# plt.clf()
 
 
-gamma()
+
+def snr():
+    zeta = numpy.linspace(0.01,6,600)
+    plt.plot(zeta,2*numpy.abs((2*jv(1,zeta)/zeta)*(jv(0,zeta)-jv(2,zeta)-2*jv(1,zeta)/zeta)))
+    plt.xlabel(r"$\zeta$")
+    plt.ylabel(r"$\text{SNR}_\theta$ [$\sigma^{-1}$]")
+    plt.savefig("snr.pdf")
+    plt.clf()
+
+if __name__ == "__main__":
+
+	angularSize()
+	gamma()
+	snRate()
+	snr()
