@@ -6,6 +6,13 @@ import matplotlib
 import scipy.integrate as integrate
 from scipy.fft import fft2, rfft2, fftshift
 from scipy.special import jv
+import sncosmo
+import pandas
+import h5py
+from astropy.io import fits
+import astropy.units as units
+from astropy.cosmology import Planck18 as cosmo
+
 matplotlib.use("TkAgg")
 
 cosmo = astropy.cosmology.FlatLambdaCDM(H0=70, Om0=0.3)
@@ -233,8 +240,78 @@ def snr():
     plt.savefig("snr.pdf")
     plt.clf()
 
+def sn2011fe():
+	with fits.open('11feP027.fit') as hdul:
+	    # Access the primary HDU (header data unit)
+	    primary_hdu = hdul[0]
+
+	    # Get the image data
+	    image_data = primary_hdu.data
+
+	    # Get the header information
+	    header = primary_hdu.header
+
+	    crval1 = header["CRVAL1"]  # Starting wavelength
+	    cdelt1 = header["CDELT1"]  # Wavelength step size
+	    naxis1 = header["NAXIS1"]  # Number of pixels in the wavelength axis
+
+	    # Create the wavelength grid
+	    wavelength = crval1 + cdelt1 * numpy.arange(naxis1)
+	return wavelength, image_data
+
+def tardis():
+	intensity = pandas.read_hdf('SN2011fe_MLE_intensity_maxlight.hdf', key='intensity')
+	lambdas = intensity.index.values
+	I_nu_p = intensity.values
+	p_rays = intensity.columns.values
+
+	# flip the order of wavelengths
+	lambdas = numpy.flip(lambdas)
+	I_nu_p = numpy.flip(I_nu_p,axis=0)
+	I_lam_p = I_nu_p/lambdas[:,None]/lambdas[:,None]
+	flux_int = numpy.trapz(I_lam_p*p_rays, x=p_rays, axis=1)
+	return lambdas, I_lam_p, flux_int
+
+def sedona():
+	wavegrid_S = numpy.flip(numpy.load("WaveGrid.npy"))
+	flux_S = numpy.flip(numpy.load("Phase0Flux.npy"),axis=0)
+	flux_int = flux_S.sum(axis=(1,2))
+	return wavegrid_S, flux_S, flux_int
+
+def normalize_spectrum(lambdas, flux_int):
+	spectrum = sncosmo.Spectrum(lambdas, flux_int)
+	spectrum_mag = spectrum.bandmag('bessellb', magsys='vega')
+	return flux_int * 10**((spectrum_mag-12)/2.5) # now in units of  (erg / s / cm^2 / A) for B=12 mag
+
+
+def nlam():
+	wavelength, image_data = sn2011fe()
+	lambdas, I_lam_p, flux_int = tardis()
+	wavegrid_S, flux_S, flux_int_S = sedona()
+
+	image_data = normalize_spectrum(wavelength,image_data)
+	flux_int = normalize_spectrum(lambdas, flux_int)
+	flux_int_S = normalize_spectrum(wavegrid_S, flux_int_S)
+
+	h = 6.626* 10**(-34+7)  # erg s
+	c = 3e10 # cm/s
+
+	plt.plot(wavelength,image_data*(wavelength)*(wavelength/1e8)**2/h/c/c, label='SNF +2.7',ls='dotted')
+	plt.plot(lambdas, flux_int*(lambdas)*(lambdas/1e8)**2/h/c/c,label='TARDIS')
+	plt.plot(wavegrid_S, flux_int_S*(wavegrid_S)*(wavegrid_S/1e8)**2/h/c/c,label="SEDONA")
+	plt.ylim((0,0.3e-12))
+	plt.xlim((3000,10000))
+	plt.xlabel(r'Wavelength [Å]')
+	plt.ylabel(r'$n_\nu$[s$^{-1}$ cm$^{-2}$ Hz]')
+	plt.legend()
+	# plt.show()
+
+	plt.savefig('nlam.pdf')
+
 if __name__ == "__main__":
 
+	nlam()
+	wef
 	angularSize()
 	gamma()
 	snRate()
