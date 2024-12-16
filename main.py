@@ -106,9 +106,9 @@ def snRate():
 	ax2 = ax1.twinx()  # instantiate a second Axes that shares the same x-axis
 
 	color = 'tab:blue'
-	ax2.set_ylabel(r'$N_\text{cum}$ [$\text{yr}^{-1}$] [solid]') #, color=color)  # we already handled the x-label with ax1
+	ax2.set_ylabel(r'$\log{N}_\text{cum}$ [$\text{yr}^{-1}$] [solid]') #, color=color)  # we already handled the x-label with ax1
 	for rate, ts in zip(rates,type_str):
-		ax2.plot(limmag, rate, label=r"{0}".format(ts))
+		ax2.plot(limmag, numpy.log10(rate), label=r"{0}".format(ts))
 	# ax2.plot(limmag, rates[1], label=r'CCSN [$N_\text{cum}$]')
 	ax2.tick_params(axis='y') #, labelcolor=color)
 
@@ -132,9 +132,9 @@ def angularSize():
 	fig, ax1 = plt.subplots(constrained_layout = True)
 	color = 'tab:red'
 	ax1.set_xlabel(r'$z$')
-	ax1.set_ylabel(r'$\theta$ [nrad] [dotted]') #, color=color)
+	ax1.set_ylabel(r'$\log{{\theta}}$ [rad] [dotted]') #, color=color)
 	ax1.tick_params(axis='y') #, labelcolor=color)
-	ax1.plot(zs, theta[0]*1e9,ls='dotted') #, ls='-.', label=r'SN Ia [$\theta$]')
+	ax1.plot(zs, numpy.log10(theta[0].value),ls='dotted') #, ls='-.', label=r'SN Ia [$\theta$]')
 	# ax1.plot(zs, theta[1]*1e9) #, ls='-.', label=r'CC [$\theta$]')
 	# plt.plot(limmag, zs[1], ls='-.', label=r'CCSN [$z_\text{max}$]')
 	ax2 = ax1.twinx()  # instantiate a second Axes that shares the same x-axis
@@ -309,10 +309,12 @@ def nlam():
 	plt.savefig('nlam.pdf')
 
 if __name__ == "__main__":
-
-	nlam()
-	wef
-	angularSize()
-	gamma()
+	# angularSize()
 	snRate()
+	wfe	
+	nlam()
+	# wef
+
+	gamma()
+
 	snr()
