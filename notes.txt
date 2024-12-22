@@ -1,10 +1,51 @@
-Indeed I have been thinking about intensity interferometry for calibrating type Ia supernova distances.  Specifically I found that with a.km-scale baseline one could measure the angular size of a supernova photosphere as it expands.   Size + spectra + modeling of the expanding photosphere gives luminosity using an extended version of the Baade-Wesselink method.  The methodology has been used for type II supernovae as they are close to blackbody (less model dependent), but the technique is extensible to SNe Ia (more model dependent).  I put the idea on the back burner as I had thought that we were a generation away from the detector technology to do so, but Jeff tells me I was wrong about that.
+Objective: Measure the angular extent of a supernova.
 
-Type Ia SNe have absolute magnitude ~ -19.1.  For 12 magnitude limit this corresponds to z=1200 km/s.  The expected rate of SNe within this volume is 0.5/yr total over the 4pi, not unreasonably low.  A novel geometric determination of the Hubble constant would be an excellent science case for an intensity interferometric telescope.
+van Cittert–Zernike theorem:
+- Two incoherent sources separated in the sky are coherent spatially when viewed far away.
+- Fourier transform of the intensity in a near monochromatic light is equal to the coherence function at two positions of space with zero time lag.  For positions on the u-v plane, zero time lag means measured at the same time.
+- Coherence function is the cross correlation of electric field.
+- Shape available with measurements with <E1E2>,
 
-Type II SNe are cleaner to model but a significantly fainter.  10x more SNe.
+II observable:
+- Measure the number of counts in narrow bandwidth as a function of time at two telescopes.
+- Combine to get the cross-correlation function of the two signals.  A function of time lag.
+- Integrate cross-correlation over time lag.
 
-z=1200 km/s
-d = 6 km to resolve
+Relation between Observables and source:
+- Cross correlation function without integrating out time delay is relatated proportional to coherence function, which is FFT of spectrum.  We assumed near monochromative already.
+- Integrating over delay time makes integrated cross-correlation proporational to coherence function with zero time lag, which is FFT of intensity
+- Measurement of intensity <II> = <E1E1E2E2>.  This is second order coherence function, which is related to coherence function in general conditions.
 
-What is "hot temperature" requirement
+Measurement noise:
+- Signal to noise: consider two regimes
+   - When jitter is big SNR propto dG/dnu  1/sqrt(sigma_t)
+   - When jitter is negligible SNR propto dG/dnu sqrt(Delta nu) : asymptotic solution no noise
+- Want Delta nu big enough to get enough photons and be timing-jitter dominated but not too big.  Delta nu sim sigma_t
+
+- Second order coherence signal has time dependence from the FT of spectrum and damping term from jitter.  If jitter timescale is long compared to coherence time than jitter damps signal.  Otherwise jitter does not affect signal.
+- T
+
+The angular size of stars is measured using the HBT effect.  The intensity as is measured as a function of time
+at two different telescopes.  The correlation between the two intensities is calculated.  The amount of correlation
+on the angular size of the star and the separation between telescopes.  The time sampling needs to be fine
+enough to get a correlation signal.   The sampling requirement depends on the bandwidth, as the correlated signal
+is slower in time.
+
+
+monochromatic light is first-order coherent, g^(1)(tau) = 1.  Problem 1 Loudon
+Is close to coherent when gamma * tau <<1.  gamma->0 (monocrhomatic) and/or tau-> 0 (same time
+Want to make measurements to resolve when g=1.  Require gamma << 1/tau.  This sets the Delta nu requirement.
+
+Measurement of HBT is correlation of the intensities of detectors at different times, averaged
+<(I_1(zt_1)-<I_1>)(I_2(zt_2)-<I_2>)>/<I_1>/I_2>
+
+Theory says this is g^(2)(tau)-1 where here tau=t2-t1
+
+Timing error tau_r degrades g^(2)-1 signal by 2 factor gamma tau_r
+
+Spatial
+
+Visibility of the interference pattern is proportional to the amplitude of the Fourier transform of the image at the corresponding spatial frequencies. This means that the coherence properties of the light used to form the image can be used to determine the spatial frequency distribution of the image, and vice versa.
+
+Ref.
+The quantum theory of light Loudon
