@@ -302,7 +302,7 @@ def nlam():
 	plt.ylim((0,0.3e-12))
 	plt.xlim((3000,10000))
 	plt.xlabel(r'Wavelength [Å]')
-	plt.ylabel(r'$n_\nu$[s$^{-1}$ cm$^{-2}$ Hz]')
+	plt.ylabel(r'$n_\nu$[s$^{-1}$ cm$^{-2}$ Hz$^{-1}$]')
 	plt.legend()
 	# plt.show()
 
@@ -310,10 +310,10 @@ def nlam():
 
 if __name__ == "__main__":
 	# angularSize()
-	snRate()
-	wfe	
+	# snRate()
+
 	nlam()
-	# wef
+	wef
 
 	gamma()
 
