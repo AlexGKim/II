@@ -33,6 +33,14 @@ instead the properties of a different set of optical telescopes, better suited
 to the measurement.
 
 
+-------
+
+The referee points out that are calculations are idealized and neglect important factors.  The referee highlights deficiencies specific to the CTA-MST array.  To address this, we emphasize that there is no existing or planned facility that we think is suited for this science case.  In particular, we want high angular resolution to limit light from the supernova host galaxy.  We take the referee's suggestion to consider properties of a better suited telescope: we change our baseline specifications to Keck, with effective aperture 9.96, mirror reflectivity,
+spectrometer, 30 ps, 0.3 SPAD QE.
+
+Add text to point out limited access from a single observatory.
+
+
 Other major points:
 The title already mentions the distances to type Ia supernovae, yet there is no
 estimate as to the limiting distance range of this technique. Out to what
