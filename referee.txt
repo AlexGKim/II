@@ -1,3 +1,89 @@
+This is a well-written paper that explores the potential of intensity
+interferometry measurements of type Ia supernovae.
+
+My main concern is that there are a number of factors concerning observations
+with the hypothetical telescope array that are not taken into account, such that
+the results are far too idealised to be realistic.
+
+Achieving detection of magnitude 12 systems is quite optimistic and relies on
+fast (pico-second) timing. Even if picosecond timing photodetectors are used,
+the MST mirror dishes are not isochronous and would introduce an intrinsic
+timing spread of a few nanoseconds. This is not mentioned here or in Dalal et al
+but should be commented on.
+
+Similarly, 'perfect throughput' is assumed, but in reality the mirrors are only
+~80% reflective at installation and degrade over time, whilst the photo detector
+itself is also not perfect. This will increase the required exposure time.
+
+In practise, a filter installed to measure at a specific wavelength will also
+have a certain width, that may smear the signal for a specific wavelength
+compared to your results in e.g. figures 4 and 6.
+
+Note also that long wavelength optical light (>~650 nm) is not reflected by
+mirrors designed for Cherenkov telescopes, such that the 8750 Angstrom
+wavelength would certainly not be measurable.
+
+Lastly, ground-based detectors have limited visibility and cannot observe all
+type Ia supernovae that occur anywhere on the sky throughout the year, such that
+the expected rate of observable SNe should be further reduced accordingly.
+
+The study should address these points more quantitatively to obtain a more
+realistic estimate of the capabilities of a "CTA-MST-array", or else consider
+instead the properties of a different set of optical telescopes, better suited
+to the measurement.
+
+
+Other major points:
+The title already mentions the distances to type Ia supernovae, yet there is no
+estimate as to the limiting distance range of this technique. Out to what
+horizon could this approach be applied to measure the distance to type Ia
+supernovae? (Directly given by the limiting magnitude and angular resolution,
+but this should be estimated and quoted.)
+
+What array layout and how many baselines are assumed in the simulations?
+
+You quote a series of papers to support the assumed magnitude 12 limit, however
+it is unclear if this is really stated in connection to "a hypothetical array
+similar to CTA-MST" somewhere, e.g. [11] corresponds to VLA-type detectors,
+whereas the Cherenkov telescope references reach magnitude ~4 at best.
+
+
+some more minor points:
+
+the limiting magnitude assumed should be mentioned in the abstract along with
+the distance horizon
+
+L31 "when equipped with can sources" -- when equipped with what? something is
+missing.
+
+L36 "patient" not sure what is meant here - "study" perhaps?
+
+Figure 1: the realistic region in these plots is relatively small, i.e. < 10 in
+m_lim and < 2 km baseline.
+What is the justification for going as high as 8 km baseline? This has no
+relevance to the "hypothetical array similar to the MSTs of CTA-South", which at
+most is~ 1km.
+
+Fig 1 caption: duplication of "as a function of survey limiting magnitude"
+
+L52 "rule of thumb" --> diffraction limit.
+
+L88 "pharegime" --> phase regime?
+
+L99 delete "Lucy" - it would be more useful to describe the actual method here.
+
+L105-106 this last sentence does not seem to be relevant in this context, please
+remove it.
+
+L118-119 mention briefly how the calculation has been accelerated. "By
+artificial intelligence" is too broad.
+
+Figure 9 caption:
+duplication of plots / panels - would suggest keeping the phrasing "First and
+third panels" and "second and fourth panels"
+
+
+
 Expand motivation for II versus other techniques.
 
 Use of multi wavelength data.  TARDIS average of two independent measures of a.  SEDONA remove covariance of angle.
