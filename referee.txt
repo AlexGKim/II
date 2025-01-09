@@ -1,0 +1,5 @@
+Expand motivation for II versus other techniques.
+
+Use of multi wavelength data.  TARDIS average of two independent measures of a.  SEDONA remove covariance of angle.
+
+Extra information from SiII feature, polarization.
