@@ -1,3 +1,17 @@
+We thank the referee for the careful reading and comments.  A revised version takes into account all comments, except for two points where we think were already addressed in the original version.  Changes in the new version are color coded.  We enclose the full referee report with our responses inline.
+
+Before submission of the article to PRD, we shared the manuscript with several experts.  We alert the referee that a late response has led to new text addressing the following topics, which appear in color in the revised manuscript.
+
+- Expanded motivation for II versus other techniques.
+
+- Use of multi-wavelength data.
+
+- Supernova explosion information encoded in the SiII feature.
+
+
+------ Original Report With Inline Responses --------
+
+
 This is a well-written paper that explores the potential of intensity
 interferometry measurements of type Ia supernovae.
 
@@ -33,13 +47,20 @@ instead the properties of a different set of optical telescopes, better suited
 to the measurement.
 
 
--------
+####
 
-The referee points out that are calculations are idealized and neglect important factors.  The referee highlights deficiencies specific to the CTA-MST array.  To address this, we emphasize that there is no existing or planned facility that we think is suited for this science case.  In particular, we want high angular resolution to limit light from the supernova host galaxy.  We take the referee's suggestion to consider properties of a better suited telescope: we change our baseline specifications to Keck, with effective aperture 9.96, mirror reflectivity,
-spectrometer, 30 ps, 0.3 SPAD QE.
+The referee points out that are calculations are idealized and neglect important factors.  The referee highlights deficiencies specific to the CTA-MST array.  Here we go over how we address several points.
 
-Add text to point out limited access from a single observatory.
+- We take the referee's suggestion to consider properties of a better suited telescope: we change our baseline specifications to Keck, adopting an effective aperture 9.96, mirror reflectivity 0.73, spectrometer, 30 ps, 0.6 SPAD QE.  The timing dispersion of Keck is much less than 1 ps.
 
+- We expanded discussion in the conclusions on why Cherenkov telescopes are not suited for our science case.
+
+- We add text addressing the question of bandwidth, which indeed was missing in the original manuscript.  To summarize: The noise is detector jitter dominated for bandwidth Delta nu 30 ps Delta nu >> 1.  At optical wavelengths, this corresponds to R<<7000.  Adopting a resolution of R~1000 will not significantly smear the signal.
+
+- Add text to point out limited access from a single observatory.
+
+
+#####
 
 Other major points:
 The title already mentions the distances to type Ia supernovae, yet there is no
@@ -48,12 +69,32 @@ horizon could this approach be applied to measure the distance to type Ia
 supernovae? (Directly given by the limiting magnitude and angular resolution,
 but this should be estimated and quoted.)
 
+######
+
+This information is given in Figure 1: Limiting magnitude and angular resolution as a function of redshift.  
+
+######
+
+
 What array layout and how many baselines are assumed in the simulations?
+
+######
+
+The array layout and baselines are described in the text after equation 19.
+
+######
+
 
 You quote a series of papers to support the assumed magnitude 12 limit, however
 it is unclear if this is really stated in connection to "a hypothetical array
 similar to CTA-MST" somewhere, e.g. [11] corresponds to VLA-type detectors,
 whereas the Cherenkov telescope references reach magnitude ~4 at best.
+
+######
+
+We have modified the text and assignment of references.
+
+######
 
 
 some more minor points:
@@ -61,10 +102,31 @@ some more minor points:
 the limiting magnitude assumed should be mentioned in the abstract along with
 the distance horizon
 
+#####
+
+The limiting magnitude is added to the abstract.
+
+#####
+
+
 L31 "when equipped with can sources" -- when equipped with what? something is
 missing.
 
+######
+
+We have added the missing "equipped with appropriate instrumentation" to the text.
+
+######
+
+
 L36 "patient" not sure what is meant here - "study" perhaps?
+
+######
+
+The text is changed to "patient astronomer" who needs time to develop a significant SN sample.
+
+######
+
 
 Figure 1: the realistic region in these plots is relatively small, i.e. < 10 in
 m_lim and < 2 km baseline.
@@ -72,28 +134,74 @@ What is the justification for going as high as 8 km baseline? This has no
 relevance to the "hypothetical array similar to the MSTs of CTA-South", which at
 most is~ 1km.
 
+######
+
+This article scopes basic requirements for a purpose-built array designed for the science case.  We add text to the introduction to emphasize this.
+
+######
+
+
 Fig 1 caption: duplication of "as a function of survey limiting magnitude"
+
+######
+
+Fixed
+
+######
 
 L52 "rule of thumb" --> diffraction limit.
 
+######
+
+Text changed to referee's suggestion.
+
+#######
+
+
 L88 "pharegime" --> phase regime?
 
+######
+
+Text corrected to "phase regime"
+
+######
+
+
 L99 delete "Lucy" - it would be more useful to describe the actual method here.
+
+
+######
+
+Text changed to describe the method.
+
+########
 
 L105-106 this last sentence does not seem to be relevant in this context, please
 remove it.
 
+########
+
+The sentence is removed.
+
+########
+
+
 L118-119 mention briefly how the calculation has been accelerated. "By
 artificial intelligence" is too broad.
+
+########
+
+The text has been expanded to describe the acceleration.
+
+#######
 
 Figure 9 caption:
 duplication of plots / panels - would suggest keeping the phrasing "First and
 third panels" and "second and fourth panels"
 
+#######
 
+Text fixed
 
-Expand motivation for II versus other techniques.
+#######
 
-Use of multi wavelength data.  TARDIS average of two independent measures of a.  SEDONA remove covariance of angle.
-
-Extra information from SiII feature, polarization.
