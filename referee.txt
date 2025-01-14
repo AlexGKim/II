@@ -1,4 +1,4 @@
-We thank the referee for the careful reading and comments.  A revised version takes into account all comments, except for two points where we think were already addressed in the original version.  Changes in the new version are color coded.  We enclose the full referee report with our responses inline.
+We thank the referee for the careful reading and comments, which has led to a revisioned version that is more precise, clear, and realistic.  The revised version takes into account all comments, except for two points where we think were already addressed in the original version.  Changes in the new version are color coded.  We enclose the full referee report with our responses inline.
 
 Before submission of the article to PRD, we shared the manuscript with several experts.  We alert the referee that a late response has led to new text addressing the following topics, which appear in color in the revised manuscript.
 
@@ -51,7 +51,7 @@ to the measurement.
 
 The referee points out that are calculations are idealized and neglect important factors.  The referee highlights deficiencies specific to the CTA-MST array.  Here we go over how we address several points.
 
-- We take the referee's suggestion to consider properties of a better suited telescope: we change our baseline specifications to Keck, adopting an effective aperture 9.96, mirror reflectivity 0.73, spectrometer, 30 ps, 0.6 SPAD QE.  The timing dispersion of Keck is much less than 1 ps.
+- We take the referee's suggestion to consider properties of a better suited telescope: we change our baseline specifications to Keck, adopting an effective aperture 9.96m, mirror reflectivity 0.73, bandpass throughput of 0.9, 0.6 SPAD QE.  The timing dispersion of Keck is much less than 1 ps.
 
 - We expanded discussion in the conclusions on why Cherenkov telescopes are not suited for our science case.
 
@@ -59,6 +59,7 @@ The referee points out that are calculations are idealized and neglect important
 
 - Add text to point out limited access from a single observatory.
 
+- The narrative of the introduction is modified to align with the above changes.
 
 #####
 
