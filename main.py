@@ -132,9 +132,9 @@ def angularSize():
 	fig, ax1 = plt.subplots(constrained_layout = True)
 	color = 'tab:red'
 	ax1.set_xlabel(r'$z$')
-	ax1.set_ylabel(r'$\log{{\theta}}$ [rad] [dotted]') #, color=color)
+	ax1.set_ylabel(r'$\log{{\theta}}$ [mas] [dotted]') #, color=color)
 	ax1.tick_params(axis='y') #, labelcolor=color)
-	ax1.plot(zs, numpy.log10(theta[0].value),ls='dotted') #, ls='-.', label=r'SN Ia [$\theta$]')
+	ax1.plot(zs, numpy.log10(theta[0].value*180/numpy.pi*3600*1e3),ls='dotted') #, ls='-.', label=r'SN Ia [$\theta$]')
 	# ax1.plot(zs, theta[1]*1e9) #, ls='-.', label=r'CC [$\theta$]')
 	# plt.plot(limmag, zs[1], ls='-.', label=r'CCSN [$z_\text{max}$]')
 	ax2 = ax1.twinx()  # instantiate a second Axes that shares the same x-axis
@@ -309,7 +309,8 @@ def nlam():
 	plt.savefig('nlam.pdf')
 
 if __name__ == "__main__":
-	# angularSize()
+	angularSize()
+	wef
 	# snRate()
 
 	nlam()

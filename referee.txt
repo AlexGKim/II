@@ -8,6 +8,8 @@ Before submission of the article to PRD, we shared the manuscript with several e
 
 - Supernova explosion information encoded in the SiII feature.
 
+- Discussion of small versus large-aperture telescopes.
+
 
 ------ Original Report With Inline Responses --------
 
@@ -81,7 +83,7 @@ What array layout and how many baselines are assumed in the simulations?
 
 ######
 
-The array layout and baselines are described in the text after equation 19.
+We add an explicit description of the baseline in Section IV.A. The array layout and baselines are described in the text after equation 19.
 
 ######
 
@@ -93,7 +95,7 @@ whereas the Cherenkov telescope references reach magnitude ~4 at best.
 
 ######
 
-We have modified the text and assignment of references.
+We have modified the introduction so that this assignment of references no longer appears.
 
 ######
 
