@@ -296,9 +296,9 @@ def nlam():
 	h = 6.626* 10**(-34+7)  # erg s
 	c = 3e10 # cm/s
 
-	plt.plot(wavelength,image_data*(wavelength)*(wavelength/1e8)**2/h/c/c, label='SNF +2.7',ls='dotted')
-	plt.plot(lambdas, flux_int*(lambdas)*(lambdas/1e8)**2/h/c/c,label='TARDIS')
-	plt.plot(wavegrid_S, flux_int_S*(wavegrid_S)*(wavegrid_S/1e8)**2/h/c/c,label="SEDONA")
+	plt.plot(wavelength,image_data*(wavelength)*(wavelength/1e8)**2/h/c/c, label='SNF +2.7',ls='-', linewidth=1.5)
+	plt.plot(lambdas, flux_int*(lambdas)*(lambdas/1e8)**2/h/c/c,label='TARDIS',ls=':', linewidth=1.5)
+	plt.plot(wavegrid_S, flux_int_S*(wavegrid_S)*(wavegrid_S/1e8)**2/h/c/c,label="SEDONA",ls='-.', linewidth=1.5)
 	plt.ylim((0,0.3e-12))
 	plt.xlim((3000,10000))
 	plt.xlabel(r'Wavelength [Å]')
@@ -309,8 +309,8 @@ def nlam():
 	plt.savefig('nlam.pdf')
 
 if __name__ == "__main__":
-	angularSize()
-	wef
+	# angularSize()
+	# wef
 	# snRate()
 
 	nlam()
