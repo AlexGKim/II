@@ -100,7 +100,7 @@ def snRate():
 	ax1.set_ylabel(r'$z_\text{max}$ [dotted]')# , color=color)
 	ax1.tick_params(axis='y') #, labelcolor=color)
 	for z,ts in zip(zs,type_str):
-		ax1.plot(limmag, z, ls='dotted')#, label=r"${} [z_\text{{max}}]$".format(ts))
+		ax1.plot(limmag, z, ls='dotted',lw=1.5)#, label=r"${} [z_\text{{max}}]$".format(ts))
 		# a1$.lot(limmag, zs[1], ls='-.', label=r'CCSN [$z_\text{max}$]')
 
 	ax2 = ax1.twinx()  # instantiate a second Axes that shares the same x-axis
@@ -108,7 +108,7 @@ def snRate():
 	color = 'tab:blue'
 	ax2.set_ylabel(r'$\log{N}_\text{cum}$ [$\text{yr}^{-1}$] [solid]') #, color=color)  # we already handled the x-label with ax1
 	for rate, ts in zip(rates,type_str):
-		ax2.plot(limmag, numpy.log10(rate), label=r"{0}".format(ts))
+		ax2.plot(limmag, numpy.log10(rate), label=r"{0}".format(ts),lw=1.5)
 	# ax2.plot(limmag, rates[1], label=r'CCSN [$N_\text{cum}$]')
 	ax2.tick_params(axis='y') #, labelcolor=color)
 
@@ -134,7 +134,7 @@ def angularSize():
 	ax1.set_xlabel(r'$z$')
 	ax1.set_ylabel(r'$\log{{\theta}}$ [mas] [dotted]') #, color=color)
 	ax1.tick_params(axis='y') #, labelcolor=color)
-	ax1.plot(zs, numpy.log10(theta[0].value*180/numpy.pi*3600*1e3),ls='dotted') #, ls='-.', label=r'SN Ia [$\theta$]')
+	ax1.plot(zs, numpy.log10(theta[0].value*180/numpy.pi*3600*1e3),ls=':',lw=1.5) #, ls='-.', label=r'SN Ia [$\theta$]')
 	# ax1.plot(zs, theta[1]*1e9) #, ls='-.', label=r'CC [$\theta$]')
 	# plt.plot(limmag, zs[1], ls='-.', label=r'CCSN [$z_\text{max}$]')
 	ax2 = ax1.twinx()  # instantiate a second Axes that shares the same x-axis
@@ -143,7 +143,7 @@ def angularSize():
 	ax2.set_ylabel(r'$d$ [km] [solid]') #, color=color)  # we already handled the x-label with ax1
 	# ax2.plot(zs, 176*(550/700)/(theta[0]*1e6), label=r'SN Ia [$r$]')
 	# ax2.plot(zs, 176*(550/700)/(theta[1]*1e6), label=r'CCSN [$r$]')
-	ax2.plot(zs, 1.22*440e-9/(theta[0])*1e-3, label=r'SN Ia')
+	ax2.plot(zs, 1.22*440e-9/(theta[0])*1e-3, label=r'SN Ia',lw=1.5)
 	# ax2.plot(zs, 1.22*440e-9/(theta[1])*1e-3, label=r'CCSN')
 	ax2.tick_params(axis='y') # , labelcolor=color)
 
@@ -309,10 +309,9 @@ def nlam():
 	plt.savefig('nlam.pdf')
 
 if __name__ == "__main__":
-	# angularSize()
-	# wef
-	# snRate()
-
+	angularSize()
+	snRate()
+	wef
 	nlam()
 	wef
 
